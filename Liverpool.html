@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liverpool FC - You'll Never Walk Alone</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #C8102E;
+            color: #FFFFFF;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #00B2A9;
+            position: relative;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        .motto {
+            font-style: italic;
+            font-size: 1.2em;
+        }
+        .crest {
+            width: 100px;
+            height: 100px;
+            background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Liverpool_FC.svg/1200px-Liverpool_FC.svg.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        .player-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .player-card {
+            background-color: #F6EB61;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .player-card:hover {
+            transform: scale(1.05);
+        }
+        .player-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+        .player-info {
+            padding: 15px;
+        }
+        .player-name {
+            font-size: 1.5em;
+            margin: 0 0 10px 0;
+            color: #C8102E;
+        }
+        .player-description {
+            color: #333333;
+            font-size: 0.9em;
+        }
+        .history {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+        .trophy-case {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .trophy {
+            text-align: center;
+            font-size: 2em;
+        }
+        .trophy-count {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        #anfield {
+            margin-top: 40px;
+            text-align: center;
+        }
+        #anfield-crowd {
+            width: 300px;
+            height: 200px;
+            background-color: #C8102E;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .fan {
+            width: 20px;
+            height: 20px;
+            background-color: #FFFFFF;
+            position: absolute;
+            border-radius: 50%;
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="crest"></div>
+        <h1>Liverpool FC</h1>
+        <p class="motto">You'll Never Walk Alone</p>
+    </header>
+    <div class="container">
+        <section class="player-grid">
+            <div class="player-card">
+                <img src="https://s.hs-data.com/bilder/spieler/gross/1822.jpg" alt="Kenny Dalglish" class="player-image">
+                <div class="player-info">
+                    <h2 class="player-name">Kenny Dalglish</h2>
+                    <p class="player-description">"King Kenny" is considered one of Liverpool's greatest players and managers, known for his vision and scoring ability.</p>
+                </div>
+            </div>
+            <div class="player-card">
+                <img src="data:image/jpeg;base64,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" alt="Steven Gerrard" class="player-image">
+                <div class="player-info">
+                    <h2 class="player-name">Steven Gerrard</h2>
+                    <p class="player-description">A homegrown talent and club legend, Gerrard's leadership and spectacular goals defined an era for Liverpool.</p>
+                </div>
+            </div>
+            <div class="player-card">
+                <img src="https://s.hs-data.com/bilder/spieler/gross/1832.jpg" alt="Ian Rush" class="player-image">
+                <div class="player-info">
+                    <h2 class="player-name">Ian Rush</h2>
+                    <p class="player-description">Liverpool's all-time top scorer, Rush's clinical finishing made him one of the most feared strikers of his generation.</p>
+                </div>
+            </div>
+            <div class="player-card">
+                <img src="https://backend.liverpoolfc.com/sites/default/files/styles/xs/public/2024-08/mohamed-salah-bodyshot-v2-2024.webp?itok=rLTwB7Hg" alt="Mohamed Salah" class="player-image">
+                <div class="player-info">
+                    <h2 class="player-name">Mohamed Salah</h2>
+                    <p class="player-description">The "Egyptian King" has become a Liverpool icon with his incredible speed, skill, and goal-scoring ability.</p>
+                </div>
+            </div>
+            <div class="player-card">
+                <img src="https://preview.redd.it/1iq7ha7t3ih91.png?width=640&crop=smart&auto=webp&s=b758c47873eb94d019a2c0eb1772c432cce84a1e" alt="Virgil van Dijk" class="player-image">
+                <div class="player-info">
+                    <h2 class="player-name">Virgil van Dijk</h2>
+                    <p class="player-description">A commanding presence in defense, van Dijk has transformed Liverpool's backline and is considered one of the world's best defenders.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="history">
+            <h2>Club History</h2>
+            <p>Founded in 1892, Liverpool FC has become one of the most successful and widely supported clubs in world football. Known for their passionate fans and the famous Anfield atmosphere, Liverpool has a rich history of domestic and European success.</p>
+            <div class="trophy-case">
+                <div class="trophy">
+                    <span>🏆</span>
+                    <p>Premier League</p>
+                    <span class="trophy-count">19</span>
+                </div>
+                <div class="trophy">
+                    <span>🏆</span>
+                    <p>Champions League</p>
+                    <span class="trophy-count">6</span>
+                </div>
+                <div class="trophy">
+                    <span>🏆</span>
+                    <p>FA Cup</p>
+                    <span class="trophy-count">8</span>
+                </div>
+            </div>
+        </section>
+        <section id="anfield">
+            <h2>Experience the Anfield Atmosphere</h2>
+            <p>Click to hear the Kop sing "You'll Never Walk Alone"!</p>
+            <div id="anfield-crowd"></div>
+        </section>
+    </div>
+    <script>
+        const crowd = document.getElementById('anfield-crowd');
+        const fanCount = 50;
+        const fans = [];
+
+        for (let i = 0; i < fanCount; i++) {
+            const fan = document.createElement('div');
+            fan.classList.add('fan');
+            fan.style.left = Math.random() * 280 + 'px';
+            fan.style.top = Math.random() * 180 + 'px';
+            crowd.appendChild(fan);
+            fans.push(fan);
+        }
+
+        let isAnimating = false;
+
+        function animateCrowd() {
+            fans.forEach(fan => {
+                fan.style.transform = `translateY(${Math.sin(Date.now() / 500) * 10}px)`;
+            });
+            if (isAnimating) {
+                requestAnimationFrame(animateCrowd);
+            }
+        }
+
+        crowd.addEventListener('click', () => {
+            if (!isAnimating) {
+                isAnimating = true;
+                animateCrowd();
+            } else {
+                isAnimating = false;
+            }
+        });
+
+        // Animate trophy counts
+        const trophyCounts = document.querySelectorAll('.trophy-count');
+        trophyCounts.forEach(count => {
+            const target = parseInt(count.textContent);
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                count.textContent = Math.round(current);
+                if (current >= target) {
+                    clearInterval(timer);
+                    count.textContent = target;
+                }
+            }, 20);
+        });
+    </script>
+</body>
+</html>

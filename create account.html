@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - Techne</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes backgroundChange {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        body {
+            background-image: url('a.jpeg');
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: white;
+            background-size: 200% 200%;
+            animation: backgroundChange 20s ease infinite;
+        }
+
+        .signup-container {
+            background-color: rgba(0, 0, 0, 0.85);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            width: 350px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .signup-container::before,
+        .signup-container::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='%2300ff85' stroke-width='2'/%3E%3Cpath d='M50 5 L50 95 M5 50 L95 50 M15 15 L85 85 M15 85 L85 15' stroke='%2300ff85' stroke-width='2'/%3E%3C/svg%3E") no-repeat center/contain;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .signup-container::before {
+            top: -50px;
+            left: -50px;
+            transform: rotate(-15deg);
+        }
+
+        .signup-container::after {
+            bottom: -50px;
+            right: -50px;
+            transform: rotate(15deg);
+        }
+
+        .signup-container h2 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            color: #00ff85;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 12px 12px 40px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(242, 242, 242, 0.1);
+            box-sizing: border-box;
+            font-size: 1em;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            background-color: rgba(242, 242, 242, 0.2);
+            box-shadow: 0 0 0 2px #00ff85;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #00ff85;
+        }
+
+        .signup-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #00ff85;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .signup-container button:hover {
+            background-color: #00cc6b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 255, 133, 0.3);
+        }
+
+        .signup-container button:active {
+            transform: translateY(0);
+        }
+
+        .signup-container a {
+            color: #ff4d6d;
+            text-decoration: none;
+            display: block;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .signup-container a:hover {
+            color: #ff8fa3;
+            text-shadow: 0 0 5px rgba(255, 77, 109, 0.5);
+        }
+
+        .error {
+            color: #ff4d4d;
+            font-size: 0.9em;
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .football-icon {
+            font-size: 2em;
+            color: #00ff85;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @media (max-width: 480px) {
+            .signup-container {
+                width: 90%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <i class="fas fa-futbol football-icon"></i>
+        <h2>Create Account</h2>
+        <form id="signupForm">
+            <div class="input-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="signupEmail" placeholder="Enter your email" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="signupPassword" placeholder="Enter your password" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-check-circle"></i>
+                <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+            </div>
+            <div class="error" id="signupErrorMsg">Passwords do not match. Please try again.</div>
+            <button type="submit">Sign Up</button>
+        </form>
+        <a href="login.html">Already have an account? Login</a>
+    </div>
+
+    <script>
+        const signupForm = document.getElementById('signupForm');
+        const signupErrorMsg = document.getElementById('signupErrorMsg');
+
+        signupForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password === confirmPassword) {
+                alert("Account created successfully!");
+                window.location.href = "login.html";
+            } else {
+                signupErrorMsg.style.display = 'block';
+                signupErrorMsg.style.animation = 'none';
+                signupErrorMsg.offsetHeight; // Trigger reflow
+                signupErrorMsg.style.animation = null;
+            }
+        });
+
+        // Add input animations
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            input.addEventListener('blur', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

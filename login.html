@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Football Data Analysis</title>
+    <style>
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('a.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-container {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            width: 350px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            color: #00ff85;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        .login-container input[type="email"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            box-sizing: border-box;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .login-container input[type="email"]:focus,
+        .login-container input[type="password"]:focus {
+            outline: none;
+            border: 2px solid #00ff85;
+            transform: scale(1.05);
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #00ff85;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .login-container button:hover {
+            background-color: #00cc6b;
+            transform: scale(1.05);
+        }
+
+        .login-container a {
+            color: #ff4d6d;
+            text-decoration: none;
+            display: block;
+            margin-top: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .login-container a:hover {
+            color: #ff8fa3;
+            text-decoration: underline;
+        }
+
+        .login-container .error {
+            color: #ff4d4d;
+            font-size: 0.9em;
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .football {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="white" d="M177.1 228.6L207.9 320h96.5l29.62-91.38L256 172.1L177.1 228.6zM255.1 0C114.6 0 .0001 114.6 .0001 256S114.6 512 256 512s255.1-114.6 255.1-255.1S397.4 0 255.1 0zM416.6 360.9l-85.4-1.297l-25.15 81.59C290.1 445.5 273.4 448 256 448s-34.09-2.523-50.09-6.859L180.8 359.6l-85.4 1.297c-18.12-27.66-29.15-60.27-30.88-95.31L134.3 216.4L106.6 135.6c21.16-26.21 49.09-46.61 81.06-58.84L256 128l68.29-51.22c31.98 12.23 59.9 32.64 81.06 58.84L377.7 216.4l69.78 49.1C445.8 300.6 434.8 333.2 416.6 360.9z"/></svg>');
+            background-size: contain;
+            animation: bounce 2s infinite, rotate 5s linear infinite;
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                width: 90%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="football" style="top: 10%; left: 10%;"></div>
+    <div class="football" style="top: 70%; left: 80%;"></div>
+    <div class="football" style="top: 40%; left: 60%;"></div>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="Enter your email" required>
+            <input type="password" id="password" placeholder="Enter your password" required>
+            <div class="error" id="errorMsg">Invalid email or password. Please try again.</div>
+            <button type="submit">Login</button>
+        </form>
+        <a href="#">Forgot Password?</a>
+        <a href="create-account.html">Create Account</a>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const errorMsg = document.getElementById('errorMsg');
+
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (email === "user@example.com" && password === "password123") {
+                alert("Login successful!");
+                window.location.href = "overview.html";
+            } else {
+                errorMsg.style.display = 'block';
+                errorMsg.style.animation = 'none';
+                errorMsg.offsetHeight; // Trigger reflow
+                errorMsg.style.animation = null;
+            }
+        });
+
+        // Create more footballs dynamically
+        for (let i = 0; i < 5; i++) {
+            const football = document.createElement('div');
+            football.className = 'football';
+            football.style.top = `${Math.random() * 100}%`;
+            football.style.left = `${Math.random() * 100}%`;
+            football.style.animationDelay = `${Math.random() * 2}s`;
+            document.body.appendChild(football);
+        }
+    </script>
+</body>
+</html>

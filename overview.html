@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Football Data Analysis</title>
+    <style>
+        :root {
+            --primary-color: #4caf50;
+            --secondary-color: #3266a8;
+            --text-color: #333;
+            --background-color: #f4f4f4;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--background-color));
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+            font-size: 2.5em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeInDown 1s;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            flex-grow: 1;
+        }
+
+        section {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.8em;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        p, ul {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        ul li {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        ul li::before {
+            content: '⚽';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Techne Analysis
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>Overview</h2>
+            <p>Football Data Analysis involves using statistical data to gain deeper insights into the game. By analyzing player performance, team strategies, and match outcomes, analysts can discover patterns that aid in making informed decisions, improving strategies, and enhancing team performance.</p>
+        </section>
+
+        <section>
+            <h2>Key Metrics</h2>
+            <p>Some of the key metrics used in football data analysis include:</p>
+            <ul>
+                <li>Possession Percentage</li>
+                <li>Pass Accuracy</li>
+                <li>Goals and Expected Goals (xG)</li>
+                <li>Shot Conversion Rate</li>
+                <li>Player Heatmaps</li>
+                <li>Defensive Actions (Tackles, Interceptions)</li>
+                <li>Progressive Passes and Carries</li>
+                <li>Pressing Intensity (PPDA)</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Data Sources</h2>
+            <p>Data for football analysis can be sourced from various providers, including:</p>
+            <ul>
+                <li>Opta Sports</li>
+                <li>Whoscored</li>
+                <li>SofaScore</li>
+                <li>StatsBomb</li>
+                <li>Wyscout</li>
+                <li>InStat</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Visualization Techniques</h2>
+            <p>Visualization tools make data more understandable through various graphics:</p>
+            <div class="grid">
+                <div class="card">
+                    <h3>Heatmaps</h3>
+                    <p>Visualize player movement and positioning on the pitch.</p>
+                </div>
+                <div class="card">
+                    <h3>Shot Maps</h3>
+                    <p>Display the location and outcome of shots taken during a match.</p>
+                </div>
+                <div class="card">
+                    <h3>Pass Networks</h3>
+                    <p>Illustrate the connections and patterns in a team's passing play.</p>
+                </div>
+                <div class="card">
+                    <h3>Performance Radars</h3>
+                    <p>Compare multiple metrics for players or teams in a single chart.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Applications</h2>
+            <p>Football data analysis is applied in various areas such as:</p>
+            <ul>
+                <li>Scouting and Player Recruitment</li>
+                <li>Tactical Analysis and Game Planning</li>
+                <li>Performance Optimization</li>
+                <li>Injury Prevention and Management</li>
+                <li>Fan Engagement and Media Content</li>
+                <li>Betting and Fantasy Sports</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Emerging Trends</h2>
+            <p>The field of football data analysis is constantly evolving. Some emerging trends include:</p>
+            <ul>
+                <li>Machine Learning and AI in Performance Prediction</li>
+                <li>Real-time Analytics During Matches</li>
+                <li>Virtual and Augmented Reality for Training</li>
+                <li>Biometric Data Integration</li>
+                <li>Advanced Computer Vision for Automated Data Collection</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Football Data Analysis. All rights reserved.</p>
+    </footer>
+</body>
+</html>

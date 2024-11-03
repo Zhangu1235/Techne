@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techne</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2b6cb0;
+            --accent-color: #ecc94b;
+            --text-color: #ffffff;
+            --background-color: #2d3748;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            background-image: url('Images/background2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: rgba(26, 54, 93, 0.9);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links a i {
+            margin-right: 5px;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .auth-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-weight: bold;
+        }
+
+        .login-button {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        .signup-button {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+
+        .auth-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .login-button:hover {
+            background-color: #d69e2e;
+        }
+
+        .signup-button:hover {
+            background-color: #2c5282;
+        }
+
+        .hero {
+            background-image: url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #d69e2e;
+            transform: translateY(-3px);
+        }
+
+        .section {
+            padding: 4rem 0;
+            background-color: rgba(43, 108, 176, 0.9);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background-color: var(--primary-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .chart-container {
+            background-color: var(--primary-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            animation: slideIn 1s ease-out;
+        }
+
+        .chart {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            height: 300px;
+            padding: 20px 0;
+        }
+
+        .chart-bar {
+            width: 40px;
+            background-color: var(--accent-color);
+            transition: height 0.3s ease;
+            position: relative;
+        }
+
+        .chart-bar::after {
+            content: attr(title);
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .news-card {
+            background-color: var(--primary-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 2rem 0;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            flex: 1;
+            margin-bottom: 1rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-icons {
+            font-size: 1.5rem;
+        }
+
+        .social-icons a {
+            color: var(--text-color);
+            margin-right: 1rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .stat-value {
+                font-size: 2rem;
+            }
+
+            .chart-bar {
+                width: 30px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo"><i class="fas fa-futbol"></i>Techne</div>
+            <ul class="nav-links">
+                <li><a href="matches.html"><i class="fas fa-chart-bar"></i> Match Stats</a></li>
+                <li><a href="player.html"><i class="fas fa-user"></i> Player Analysis</a></li>
+                <li><a href="team.html"><i class="fas fa-users"></i> Team Performance</a></li>
+                <li><a href="knowplayers.html"><i class="fas fa-newspaper"></i> Know Players</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                <li class="auth-buttons">
+                    <a href="login.html" class="auth-button login-button">Login</a>
+                    <a href="create account.html" class="auth-button signup-button">Create Account</a>
+                <li style="font-weight: bold;"><a href="help.html">Help</a></li>
+                <li style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight: bold;"><a href="buubuu.html">RATINGS</a></li>
+                </li>
+                <li style="font-weight: bold;"><a href="overview.html"> Overview</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1><i class="fas fa-chart-line"></i> Unlock the Power of Football Data</h1>
+                <p>Dive deep into match statistics, player performance, and team analysis with Techne.</p>
+            </div>
+        </section>
+
+        <section id="match-stats" class="section">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-chart-pie"></i> Match Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">62%</div>
+                        <div class="stat-label">Average Possession</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">18</div>
+                        <div class="stat-label">Shots on Target</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">87%</div>
+                        <div class="stat-label">Pass Accuracy</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">3.2</div>
+                        <div class="stat-label">Expected Goals (xG)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="player-analysis" class="section">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-user-chart"></i> Player Analysis</h2>
+                <div class="chart-container">
+                    <h3><i class="fas fa-trophy"></i> Top Goal Scorers</h3>
+                    <div class="chart">
+                        <div class="chart-bar" style="height: 80%;" title="Ronaldo: 24"></div>
+                        <div class="chart-bar" style="height: 65%;" title="Messi: 19"></div>
+                        <div class="chart-bar" style="height: 90%;" title="Haaland: 28"></div>
+                        <div class="chart-bar" style="height: 50%;" title="Neymar: 15"></div>
+                        <div class="chart-bar" style="height: 75%;" title="Mbappé: 22"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="team-performance" class="section">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-shield-alt"></i> Team Performance</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">75%</div>
+                        <div class="stat-label">Win Rate</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-value">2.5</div>
+                        <div class="stat-label">Goals per Game</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">12</div>
+                        <div class="stat-label">Clean Sheets</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">82</div>
+                        <div class="stat-label">Points</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="news" class="section">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-newspaper"></i> Latest Football News</h2>
+                <div class="news-grid">
+                    <div class="news-card">
+                        <img src="https://bsmedia.business-standard.com/_media/bs/img/article/2022-05/16/full/1652678989-8466.jpg?im=FeatureCrop,size=(826,465)" alt="Football news 1">
+                        <div class="news-content">
+                            <h3 class="news-title"><i class="fas fa-exchange-alt"></i> Nyon (Switzerland) </h3>
+                            <p>UEFA pledges to spend $1 billion for women's football development in Europe</p>
+                            <a href="https://www.business-standard.com/sports/football-news/uefa-pledges-to-spend-1-billion-for-women-s-football-development-in-europe-124103001469_1.html" class="cta-button">Read more</a>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <img src="https://ss-i.thgim.com/public/incoming/66k4kp/article68817246.ece/alternates/LANDSCAPE_1200/2024-10-25T180708Z_910764173_UP1EKAP1EBS7C_RTRMADP_3_SOCCER-FRIENDLY-ENG-GER-REPORT.JPG" alt="Football news 2">
+                        <div class="news-content">
+                            <h3 class="news-title"><i class="fas fa-trophy"></i>  England players warming up before the friendly match against Germany at the Wembley Stadium. </h3>
+                            <p>The four-year strategy’s targets include the delivery of 4,000 new grass pitches and 300 additional 3G pitches and to increase the number of female match officials at all levels of the game by over 1,500.</p>
+                            <a href="https://www.bbc.com/sport/football/articles/ce9gz57dlr3o" class="cta-button">Read more</a>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <img src="https://ichef.bbci.co.uk/ace/standard/976/cpsprodpb/4f5b/live/036b6050-9212-11ef-b047-4d31578ee4d2.jpg.webp" alt="Football news 3">
+                        <div class="news-content">
+                            <h3 class="news-title"><i class="fas fa-user-injured"></i> The speech that changed the course of women's football</h3>
+                            <p>“I got very angry and I said we have to do something about it.”
+
+                                It was 1986 and the focus of Ellen Wille's ire was football's world governing body, Fifa. She was part of the Norwegian Football Federation (NFF) executive committee at the time and had just read a Fifa report that did not make a single reference to women's football.
+                                
+                                The science teacher from Oslo would take matters into her own hands and deliver a speech which would force those at the top of Fifa to take notice.</p>
+                            <a href="" class="cta-button">Read more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-futbol"></i>Techne</h3>
+                    <p>Empowering football analysis with cutting-edge data insights.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-info-circle"></i> About Us</a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                        <li><a href="#"><i class="fas fa-lock"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-file-alt"></i> Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Techne All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

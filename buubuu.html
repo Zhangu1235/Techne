@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Match Ratings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #1a5d1a;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+        h1 {
+            margin: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+        .match-card {
+            background: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .match-title {
+            font-size: 1.2rem;
+            color: #1a5d1a;
+            margin-bottom: 10px;
+        }
+        .match-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .rating {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e63946;
+        }
+        .comments {
+            background: #f1faee;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .comment {
+            margin-bottom: 5px;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #1a5d1a;
+        }
+        select, input[type="range"], textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #1a5d1a;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #2d882d;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Football Match Ratings</h1>
+    </header>
+
+    <div class="container">
+        <h2>Recent Matches</h2>
+        
+        <div class="match-card">
+            <div class="match-title">Manchester United vs Liverpool</div>
+            <div class="match-info">
+                <span>Date: 2024-02-10</span>
+                <span>Score: 2-1</span>
+            </div>
+            <div class="rating">
+                Rating: 4.2/5 ⭐⭐⭐⭐
+            </div>
+            <div class="comments">
+                <div class="comment">Great match! Exciting till the end.</div>
+                <div class="comment">United's defense was solid today.</div>
+            </div>
+        </div>
+
+        <div class="match-card">
+            <div class="match-title">Arsenal vs Chelsea</div>
+            <div class="match-info">
+                <span>Date: 2024-02-09</span>
+                <span>Score: 3-2</span>
+            </div>
+            <div class="rating">
+                Rating: 4.8/5 ⭐⭐⭐⭐⭐
+            </div>
+            <div class="comments">
+                <div class="comment">What a game! Arsenal's attack was unstoppable.</div>
+                <div class="comment">Chelsea fought hard, but Arsenal deserved the win.</div>
+            </div>
+        </div>
+
+        <h2>Rate a Match</h2>
+        <form>
+            <label for="match">Select Match:</label>
+            <select id="match" name="match">
+                <option value="1">Manchester United vs Liverpool (2024-02-10)</option>
+                <option value="2">Arsenal vs Chelsea (2024-02-09)</option>
+                <option value="3">Real Madrid vs Barcelona (2024-10-27)</option>
+                <option value="4">Juventus vs VFB Stuttgart (2024-10-23)</option>
+                <option value="4">Barcelona vs Bayern Munich (2024-10-23)</option>
+            </select>
+
+            <label for="rating">Rating:</label>
+            <input type="range" id="rating" name="rating" min="1" max="5" step="1">
+
+            <label for="comment">Comment:</label>
+            <textarea id="comment" name="comment" rows="4" placeholder="Share your thoughts about the match..."></textarea>
+
+            <input type="submit" value="Submit Rating">
+        </form>
+    </div>
+</body>
+</html>

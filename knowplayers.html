@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Famous Footballers on Social Media</title>
+    <style>
+        :root {
+            --primary-color: #1e3c72;
+            --background-color: #f0f2f5;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --twitter-color: #1DA1F2;
+            --instagram-color: #E1306C;
+            --facebook-color: #4267B2;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+        }
+
+        .player-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .player-card {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 220px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .player-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .player-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid var(--primary-color);
+        }
+
+        .player-card h2 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+        }
+
+        .social-icons .twitter {
+            background-color: var(--twitter-color);
+        }
+
+        .social-icons .instagram {
+            background-color: var(--instagram-color);
+        }
+
+        .social-icons .facebook {
+            background-color: var(--facebook-color);
+        }
+
+        .social-icons a:hover {
+            opacity: 0.8;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .player-card {
+                width: calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .player-card {
+                width: 100%;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <h1>Famous Footballers on Social Media</h1>
+
+    <div class="player-container" id="playerContainer"></div>
+
+    <footer>
+        <p>&copy; 2024 Famous Footballers | All rights reserved</p>
+    </footer>
+
+    <script>
+        // JavaScript to dynamically create player cards
+        const players = [
+            { name: "Lionel Messi", image: "https://th.bing.com/th/id/OIP.jKHBRVWDytTl9XLqRRQ7kAAAAA?rs=1&pid=ImgDetMain", twitter: "https://x.com/leomessisite/", instagram: "https://www.instagram.com/leomessi/", facebook: "https://www.facebook.com/leomessi" },
+            { name: "Cristiano Ronaldo", image: "https://th.bing.com/th/id/OIP.KeIijA181Ged9wRqNlkO_QHaHN?rs=1&pid=ImgDetMain", twitter: "https://twitter.com/Cristiano", instagram: "https://www.instagram.com/cristiano/", facebook: "https://facebook.com/cristiano" },
+            { name: "Neymar Jr.", image: "https://i.pinimg.com/originals/28/d7/2a/28d72a675bc69a435b0505533cbb8e27.jpg", twitter: "https://twitter.com/neymarjr", instagram: "https://instagram.com/neymarjr", facebook: "https://facebook.com/neymarjr" },
+            { name: "Kylian Mbappé", image: "https://th.bing.com/th/id/OIP.8jKygDqUQ6ifBIsAoC0iTgHaE8?rs=1&pid=ImgDetMain", twitter: "https://twitter.com/kmbappe", instagram: "https://instagram.com/k.mbappe", facebook: "https://facebook.com/kylianmbappe" },
+            { name: "Kevin De Bruyne", image: "https://i0.wp.com/hollywoodzam.com/wp-content/uploads/2022/09/Kevin-De-Bruyne-1.webp?fit=400%2C400&ssl=1", twitter: "https://twitter.com/DeBruyneKev", instagram: "https://instagram.com/kevindebruyne", facebook: "https://facebook.com/kevindebruyne" },
+            { name: "Mohamed Salah", image: "https://th.bing.com/th/id/OIP.IEI4PLt7m2O19GtGvDC1BwAAAA?rs=1&pid=ImgDetMain", twitter: "https://twitter.com/MoSalah", instagram: "https://instagram.com/mosalah", facebook: "https://facebook.com/mohamedsalah" },
+            { name: "Virgil van Dijk", image: "https://th.bing.com/th/id/OIP.YIBu1pZhCPussGXLDKlzjQHaFj?rs=1&pid=ImgDetMain", twitter: "https://twitter.com/VaDijk", instagram: "https://instagram.com/virgilvandijk", facebook: "https://facebook.com/virgilvandijk" },
+            { name: "Karim Benzema", image: "https://th.bing.com/th/id/OIP.zjZDWiN9WK2kDfQhb7cf_wHaIw?w=550&h=650&rs=1&pid=ImgDetMain", twitter: "https://twitter.com/Benzema", instagram: "https://instagram.com/karimbenzema", facebook: "https://facebook.com/karimbenzema" },
+            { name: "Harry Kane", image: "https://1.bp.blogspot.com/-yzBrUK9VChk/W5qEt9XwXFI/AAAAAAAAAUw/0aJtswLlVUMS8huB5f2I974m0mGFbw38ACLcBGAs/s1600/harry-kane-s.jpg", twitter: "https://twitter.com/HKane", instagram: "https://instagram.com/harrykane", facebook: "https://facebook.com/harrykane" },
+            { name: "Sadio Mané", image: "https://static.independent.co.uk/s3fs-public/thumbnails/image/2019/12/11/09/sadio-mane-0.jpg", twitter: "https://twitter.com/Manuel_Locadia", instagram: "https://instagram.com/sadiomaneofficiel", facebook: "https://facebook.com/sadiomane" },
+            { name: "Paul Pogba", image: "https://static.independent.co.uk/2023/10/06/13/newFile-5.jpg", twitter: "https://twitter.com/paulpogba", instagram: "https://instagram.com/paulpogba", facebook: "https://facebook.com/paulpogba" },
+            { name: "Gareth Bale", image: "https://static.independent.co.uk/2022/06/02/15/SOCCER%20Wales%20110522.jpg", twitter: "https://twitter.com/GarethBale11", instagram: "https://instagram.com/garethbale11", facebook: "https://facebook.com/GarethBale" },
+            { name: "Luka Modric", image: "https://api.my-rent.net/object_picture/object_picture/116567", twitter: "https://twitter.com/LukaModric10", instagram: "https://instagram.com/lukamodric10", facebook: "https://facebook.com/lukamodric" },
+            { name: "N'Golo Kanté", image: "https://cartonsport.com/wp-content/uploads/2022/10/n-golo-kante-scaled.jpeg", twitter: "https://twitter.com/nglkante", instagram: "https://instagram.com/ngolo_kante", facebook: "https://facebook.com/ngolkante" },
+            { name: "Riyad Mahrez", image: "https://th.bing.com/th/id/OIP.mpiG0k8sxyy6rI4ItXKKOAHaFH?rs=1&pid=ImgDetMain", twitter: "https://twitter.com/mahrez22", instagram: "https://instagram.com/riyadmahrez26", facebook: "https://facebook.com/riyadmahrez" },
+            { name: "Son Heung-min", image: "https://th.bing.com/th/id/OIP.1uqdAdfUmuXQGKJv70Q0EwHaHr?rs=1&pid=ImgDetMain", twitter: "https://twitter.com/Sonny7", instagram: "https://instagram.com/sonheungmin", facebook: "https://facebook.com/SonHeungmin" },
+            { name: "Raheem Sterling", image: "https://th.bing.com/th/id/OIP.u_tNT2icEF5BeL5sPITD6gHaLH?rs=1&pid=ImgDetMain", twitter: "https://twitter.com/sterling7", instagram: "https://instagram.com/sterling7", facebook: "https://facebook.com/raheemsterling" },
+            { name: "Phil Foden", image: "https://i.pinimg.com/736x/f1/f0/99/f1f0999480256b392f9e6118372084e3.jpg", twitter: "https://twitter.com/philfoden", instagram: "https://instagram.com/philfoden", facebook: "https://facebook.com/philfoden" },
+            { name: "Marcus Rashford", image: "https://www.expressandstar.com/resizer/zSTypdVQ22MKE8j2xvcj36vlQNw=/1200x0/cloudfront-us-east-1.images.arcpublishing.com/mna/FF25PZKMRND6HPUYKKSYMFT5TQ.jpg", twitter: "https://twitter.com/MRashford", instagram: "https://instagram.com/marcusrashford", facebook: "https://facebook.com/marcusrashford" },
+            { name: "Antoine Griezmann", image: "https://i.pinimg.com/originals/72/91/59/729159128da816967c77a60aa781dd68.jpg", twitter: "https://twitter.com/AntoGriezmann", instagram: "https://instagram.com/antogriezmann", facebook: "https://facebook.com/antoinegriezmann" },
+            { name: "Jadon Sancho", image: "https://th.bing.com/th/id/OIP.xRA7c0ky6ZGrPjdGlTadcQHaE8?rs=1&pid=ImgDetMain", twitter: "https://twitter.com/sandujadon", instagram: "https://instagram.com/jadon_sancho", facebook: "https://facebook.com/jadonsancho" },
+            { name: "Gini Wijnaldum", image: "https://static.independent.co.uk/2021/10/11/11/newFile-4.jpg", twitter: "https://twitter.com/GiniWijnaldum", instagram: "https://instagram.com/giniwijnaldum", facebook: "https://facebook.com/GiniWijnaldum" },
+            { name: "Sergio Ramos", image: "https://th.bing.com/th/id/OIP.0ndujqiUX8mxbSOrEhQKxgHaHP?w=191&h=187&c=7&r=0&o=5&dpr=1.5&pid=1.7", twitter: "https://twitter.com/SergioRamos", instagram: "https://instagram.com/sergioramos", facebook: "https://facebook.com/sergioramos" },
+            { name: "Kepa Arrizabalaga", image: "https://th.bing.com/th/id/OIP.H0b3o73ddrbuGSkPiNpZHAHaEK?rs=1&pid=ImgDetMain", twitter: "https://twitter.com/kepa_arrizabalaga", instagram: "https://instagram.com/kepaarrizabalaga", facebook: "https://facebook.com/KepaArrizabalaga" },
+            { name: "Ederson Moraes", image: "https://th.bing.com/th/id/OIP.Q_u9k4APHA2nSy0mpE3ANgHaFj?rs=1&pid=ImgDetMain", twitter: "https://twitter.com/edersonmoraes", instagram: "https://instagram.com/edersonmoraes", facebook: "https://facebook.com/EdersonMoraes" },
+            { name: "Thibaut Courtois", image: "https://th.bing.com/th/id/OIP.T9yAUJjNt4Kjpp1nJfp9tAHaFn?rs=1&pid=ImgDetMain", twitter: "https://twitter.com/ThibautCourtois", instagram: "https://instagram.com/thibautcourtois", facebook: "https://facebook.com/ThibautCourtois" },
+            { name: "Marc-André ter Stegen", image:  "https://i2-prod.dailystar.co.uk/incoming/article20446741.ece/ALTERNATES/s1227b/0_httpscdnimagesdailystarcoukdynamic122photos223000900x738423223", twitter: "https://twitter.com/andreterstegen", instagram: "https://instagram.com/terstegen1", facebook: "https://facebook.com/marcandreterstegen" },
+            { name: "Alisson Becker", image: "https://editorial01.shutterstock.com/preview-440/10558740be/9ccdbb90/Shutterstock_10558740be.jpg", twitter: "https://twitter.com/Alissonbecker", instagram: "https://instagram.com/alissonbecker", facebook: "https://facebook.com/alissonbecker" },
+            { name: "Edin Džeko", image: "https://upload.wikimedia.org/wikipedia/commons/a/a5/20150331_2026_AUT_BIH_2177_Edin_D%C5%BEeko.jpg", twitter: "https://twitter.com/EdinDzeko", instagram: "https://instagram.com/edindzeko", facebook: "https://facebook.com/edindzeko" },
+            { name: "César Azpilicueta", image: "https://th.bing.com/th/id/OIP.MnHzMGnXK6PqKBOBn_4HsgHaFB?rs=1&pid=ImgDetMain", twitter: "https://twitter.com/CesarAzpi", instagram: "https://instagram.com/cesarazpilicueta", facebook: "https://facebook.com/cesarazpilicueta" },
+            { name: "Alex Sandro", image: "https://s.yimg.com/uu/api/res/1.2/D1onSq3z41Pfk.sWz1VKkQ--~B/aD0yMzc2O3c9MzM2MDtzbT0xO2FwcGlkPXl0YWNoeW9u/http://media.zenfs.com/en_us/News/ap_webfeeds/88162583937a43868d88cc914616bc0b.jpg", twitter: "https://twitter.com/sandroalex", instagram: "https://instagram.com/alexsandro6", facebook: "https://facebook.com/alexsandro" },
+            { name: "Raphaël Varane", image: "https://icdn.psgtalk.com/wp-content/uploads/2021/06/raphael-varane-real-madrid-la-liga.jpg", twitter: "https://twitter.com/RVVarane", instagram: "https://instagram.com/raphaelvarane", facebook: "https://facebook.com/raphaelvarane" },
+            { name: "Ben Chilwell", image: "https://th.bing.com/th/id/OIP.vhdBFVehUfvQuqEi4jMejgHaHa?rs=1&pid=ImgDetMain", twitter: "https://twitter.com/benchillwell", instagram: "https://instagram.com/benchilwell", facebook: "https://facebook.com/benchilwell" },
+            { name: "Dominik Szoboszlai", image: "https://th.bing.com/th/id/OIP.XIlzS2zgQ7Fz_RjnaPy72AHaFl?w=201&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7", twitter: "https://twitter.com/szoboszlai_dominik", instagram: "https://instagram.com/szoboszlai.dominik", facebook: "https://facebook.com/szoboszlaidominik" },
+            { name: "Frenkie de Jong", image: "https://th.bing.com/th/id/OIP.31og-1JMLqNKKrIHT3gRoQHaEK?rs=1&pid=ImgDetMain", twitter: "https://twitter.com/frenkie_dejong", instagram: "https://instagram.com/frenkiedejong", facebook: "https://facebook.com/frenkiedejong" },
+            { name: "Hakim Ziyech", image: "https://th.bing.com/th/id/OIP.ipC_MqatSJ2cxmMSNAIIqQHaEK?w=307&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7", twitter: "https://twitter.com/hakim_ziyech", instagram: "https://instagram.com/hakimziyech", facebook: "https://facebook.com/hakimziyech" },
+            { name: "Lamine Yamal", image: "https://e00-marca.uecdn.es/assets/multimedia/imagenes/2023/08/23/16927859362135.jpg", instagram: "https://www.instagram.com/lamine.yamal/" },
+            { name: "David Beckham", image: "https://centredevils.co.uk/wp-content/uploads/2023/10/12-facts-about-david-beckham-1689596244.jpg", instagram: "https://www.instagram.com/deividbecham/" },
+            { name: "Gavi Pablo", image: "https://e1.pxfuel.com/desktop-wallpaper/533/691/desktop-wallpaper-who-is-gavi-barcelona-teenager-becomes-spain-s-youngest-pablo-gavi.jpg", instagram: "https://www.instagram.com/pablogavi/" },
+            { name: "Zlatan Ibrahimovic", image: "https://upload.wikimedia.org/wikipedia/commons/0/09/Zlatan_Ibrahimovi%C4%87_June_2018.jpg", instagram: "https://www.instagram.com/iamzlatanibrahimovic/", twitter: "https://twitter.com/Ibra_official", facebook: "https://www.facebook.com/ZlatanIbrahimovic" }
+        ];
+
+        const playerContainer = document.getElementById('playerContainer');
+
+        players.forEach(player => {
+            const playerCard = document.createElement('div');
+            playerCard.className = 'player-card';
+            
+            playerCard.innerHTML = `
+                <img src="${player.image}" alt="${player.name}" loading="lazy">
+                <h2>${player.name}</h2>
+                <div class="social-icons">
+                    ${player.twitter ? `<a href="${player.twitter}" target="_blank" rel="noopener noreferrer" class="twitter" aria-label="Twitter profile of ${player.name}"><i class="fab fa-twitter"></i></a>` : ''}
+                    ${player.instagram ? `<a href="${player.instagram}" target="_blank" rel="noopener noreferrer" class="instagram" aria-label="Instagram profile of ${player.name}"><i class="fab fa-instagram"></i></a>` : ''}
+                    ${player.facebook ? `<a href="${player.facebook}" target="_blank" rel="noopener noreferrer" class="facebook" aria-label="Facebook profile of ${player.name}"><i class="fab fa-facebook-f"></i></a>` : ''}
+                </div>
+            `;
+            
+            playerContainer.appendChild(playerCard);
+        });
+    </script>
+</body>
+</html>

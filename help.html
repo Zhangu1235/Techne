@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help - Techne</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+
+        nav {
+            background-color: #1a5f7a;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 1rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: #ffd700;
+        }
+
+        .icon {
+            margin-right: 0.5rem;
+            color: #ffd700;
+        }
+
+        .help-section {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-out;
+        }
+
+        h1, h2 {
+            color: #1a5f7a;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .faq {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .question {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 1rem;
+        }
+
+        .question:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .question h3 {
+            color: #1a5f7a;
+            margin-bottom: 0.5rem;
+        }
+
+        ul {
+            padding-left: 1.5rem;
+        }
+
+        a {
+            color: #1a5f7a;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #ffd700;
+        }
+
+        footer {
+            background-color: #1a5f7a;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .football-icon {
+            font-size: 3rem;
+            color: #1a5f7a;
+            text-align: center;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+        }
+
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            .help-section {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="website.html"><i class="fas fa-home icon"></i>Home</a></li>
+            <li><a href="matches.html"><i class="fas fa-futbol icon"></i>Matches</a></li>
+            <li><a href="team.html"><i class="fas fa-users icon"></i>Team</a></li>
+            <li><a href="statistics.html"><i class="fas fa-chart-bar icon"></i>Statistics</a></li>
+            <li><a href="players.html"><i class="fas fa-running icon"></i>Players</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope icon"></i>Contact</a></li>
+            <li><a href="help.html" class="active"><i class="fas fa-question-circle icon"></i>Help</a></li>
+        </ul>
+    </nav>
+
+    <!-- Help Content -->
+    <div class="help-section">
+        <i class="fas fa-futbol football-icon"></i>
+        <h1>Help and Support</h1>
+        <p>If you need assistance navigating through the Football Data Analysis website, refer to the sections below.</p>
+        
+        <div class="faq">
+            <h2><i class="fas fa-question-circle icon"></i>Frequently Asked Questions</h2>
+            <div class="question">
+                <h3>1. How do I find match statistics?</h3>
+                <p>Navigate to the <a href="statistics.html"><i class="fas fa-chart-bar icon"></i>Statistics</a> section in the top navigation bar to explore detailed match analysis and statistics.</p>
+            </div>
+            <div class="question">
+                <h3>2. Can I view player information?</h3>
+                <p>Yes, visit the <a href="players.html"><i class="fas fa-running icon"></i>Players</a> section to get information about individual player performance and profiles.</p>
+            </div>
+            <div class="question">
+                <h3>3. How can I contact support?</h3>
+                <p>If you need help, use the <a href="contact.html"><i class="fas fa-envelope icon"></i>Contact</a> page to send us a message. We typically respond within 48 hours.</p>
+            </div>
+        </div>
+        
+        <h2><i class="fas fa-laptop icon"></i>Using the Website</h2>
+        <p>The website is designed to offer in-depth football data analysis. Each section in the navigation bar provides specific insights:</p>
+        <ul>
+            <li><strong><i class="fas fa-home icon"></i>Overview:</strong> General information about recent and upcoming matches.</li>
+            <li><strong><i class="fas fa-futbol icon"></i>Matches:</strong> Detailed reports on recent matches, including team performances and key events.</li>
+            <li><strong><i class="fas fa-users icon"></i>Team:</strong> Insights into team compositions, strategies, and key players.</li>
+            <li><strong><i class="fas fa-chart-bar icon"></i>Statistics:</strong> In-depth analysis, including team and player statistics, historical data, and trends.</li>
+            <li><strong><i class="fas fa-running icon"></i>Players:</strong> Profiles of players, including their match stats and career history.</li>
+        </ul>
+        
+        <h2><i class="fas fa-headset icon"></i>Need Further Assistance?</h2>
+        <p>If you have any additional questions or concerns, feel free to reach out through the <a href="contact.html"><i class="fas fa-envelope icon"></i>Contact</a> page. We're here to help!</p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Techne. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Add smooth scrolling to all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

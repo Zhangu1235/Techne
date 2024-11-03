@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Player Search</title>
+    <style>
+        :root {
+            --primary-color: #ff9900;
+            --secondary-color: #1a1a1a;
+            --text-color: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: var(--text-color);
+            min-height: 100vh;
+            background: url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s, transform 0.3s;
+            display: inline-block;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            flex-grow: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            width: 70%;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 1em;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        .search-bar button:hover {
+            background-color: #ffad33;
+            transform: translateY(-2px);
+        }
+
+        .player-item {
+            padding: 15px;
+            border-bottom: 1px solid #444;
+            transition: all 0.3s;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .player-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .player-item h3 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.2em;
+        }
+
+        .player-item p {
+            margin: 5px 0;
+            color: #ccc;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: var(--text-color);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .football {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%23ffffff"/><path d="M50 0 L100 50 L50 100 L0 50 Z" fill="%23000000"/></svg>') no-repeat center center;
+            background-size: contain;
+            animation: bounce 2s infinite;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .container {
+                margin: 20px 10px;
+            }
+
+            .search-bar input {
+                width: 60%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="website.html">Home</a></li>
+            <li><a href="matches.html">Matches</a></li>
+            <li><a href="team.html">Teams</a></li>
+            <li><a href="overview.html">Statistics</a></li>
+            <li><a href="player.html">Players</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div class="football"></div>
+        <h1>Search Football Players</h1>
+        <div class="search-bar">
+            <input type="text" id="player-name" placeholder="Enter player name, position, or team" aria-label="Search for players">
+            <button id="search-button">Search</button>
+        </div>
+        <div id="players-list" aria-live="polite">
+            <!-- Player items will be dynamically added here -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Football Data Analysis. All rights reserved.</p>
+    </footer>
+
+    <script>
+const players = [
+    { name: "Lionel Messi", position: "Forward", team: "Inter Miami" },
+    { name: "Cristiano Ronaldo", position: "Forward", team: "Al Nassr" },
+    { name: "Kylian Mbappé", position: "Forward", team: "Paris Saint-Germain" },
+    { name: "Erling Haaland", position: "Forward", team: "Manchester City" },
+    { name: "Kevin De Bruyne", position: "Midfielder", team: "Manchester City" },
+    { name: "Neymar Jr.", position: "Forward", team: "Al Hilal" },
+    { name: "Virgil van Dijk", position: "Defender", team: "Liverpool" },
+    { name: "Mohamed Salah", position: "Forward", team: "Liverpool" },
+    { name: "Harry Kane", position: "Forward", team: "Bayern Munich" },
+    { name: "Robert Lewandowski", position: "Forward", team: "Barcelona" },
+    { name: "Bruno Fernandes", position: "Midfielder", team: "Manchester United" },
+    { name: "Trent Alexander-Arnold", position: "Defender", team: "Liverpool" },
+    { name: "Joshua Kimmich", position: "Midfielder", team: "Bayern Munich" },
+    { name: "Jude Bellingham", position: "Midfielder", team: "Real Madrid" },
+    { name: "Phil Foden", position: "Midfielder", team: "Manchester City" },
+    { name: "Bukayo Saka", position: "Forward", team: "Arsenal" },
+    { name: "Vinicius Jr.", position: "Forward", team: "Real Madrid" },
+    { name: "Rodri", position: "Midfielder", team: "Manchester City" },
+    { name: "Thibaut Courtois", position: "Goalkeeper", team: "Real Madrid" },
+    { name: "Alisson Becker", position: "Goalkeeper", team: "Liverpool" },
+    { name: "Sergio Ramos", position: "Defender", team: "Sevilla" },
+    { name: "Luka Modrić", position: "Midfielder", team: "Real Madrid" },
+    { name: "Karim Benzema", position: "Forward", team: "Al-Ittihad" },
+    { name: "Pedri", position: "Midfielder", team: "Barcelona" },
+    { name: "Gerard Moreno", position: "Forward", team: "Villarreal" },
+    { name: "Raheem Sterling", position: "Forward", team: "Chelsea" },
+    { name: "Achraf Hakimi", position: "Defender", team: "Paris Saint-Germain" },
+    { name: "Marc-André ter Stegen", position: "Goalkeeper", team: "Barcelona" },
+    { name: "Gianluigi Donnarumma", position: "Goalkeeper", team: "Paris Saint-Germain" },
+    { name: "João Félix", position: "Forward", team: "Barcelona" },
+    { name: "Mason Mount", position: "Midfielder", team: "Manchester United" },
+    { name: "Raphaël Varane", position: "Defender", team: "Manchester United" },
+    { name: "Leon Goretzka", position: "Midfielder", team: "Bayern Munich" },
+    { name: "Federico Chiesa", position: "Forward", team: "Juventus" },
+    { name: "Paulo Dybala", position: "Forward", team: "Roma" },
+    { name: "Kalidou Koulibaly", position: "Defender", team: "Al Hilal" },
+    { name: "Gabriel Jesus", position: "Forward", team: "Arsenal" },
+    { name: "Ederson", position: "Goalkeeper", team: "Manchester City" },
+    { name: "David Alaba", position: "Defender", team: "Real Madrid" },
+    { name: "Andrew Robertson", position: "Defender", team: "Liverpool" },
+    { name: "Lautaro Martínez", position: "Forward", team: "Inter Milan" },
+    { name: "Romelu Lukaku", position: "Forward", team: "Roma" },
+    { name: "Sandro Tonali", position: "Midfielder", team: "Newcastle United" },
+    { name: "Reece James", position: "Defender", team: "Chelsea" },
+    { name: "Hakim Ziyech", position: "Forward", team: "Galatasaray" },
+    { name: "Casemiro", position: "Midfielder", team: "Manchester United" },
+    { name: "Marco Verratti", position: "Midfielder", team: "Al-Arabi" },
+    { name: "Kai Havertz", position: "Forward", team: "Arsenal" },
+    { name: "Pierre-Emerick Aubameyang", position: "Forward", team: "Marseille" },
+    { name: "Antoine Griezmann", position: "Forward", team: "Atletico Madrid" },
+    { name: "Riyad Mahrez", position: "Forward", team: "Al-Ahli" },
+    { name: "Rodrigo De Paul", position: "Midfielder", team: "Atletico Madrid" },
+    { name: "Matthijs de Ligt", position: "Defender", team: "Bayern Munich" },
+    { name: "Edin Džeko", position: "Forward", team: "Fenerbahçe" },
+    { name: "Ivan Rakitić", position: "Midfielder", team: "Sevilla" },
+    { name: "Toni Kroos", position: "Midfielder", team: "Real Madrid" },
+    { name: "Son Heung-min", position: "Forward", team: "Tottenham Hotspur" },
+    { name: "Christian Pulisic", position: "Forward", team: "AC Milan" },
+    { name: "Milan Škriniar", position: "Defender", team: "Paris Saint-Germain" },
+    { name: "Hugo Lloris", position: "Goalkeeper", team: "Tottenham Hotspur" },
+    { name: "Sergej Milinković-Savić", position: "Midfielder", team: "Al-Hilal" },
+    { name: "Nicolo Barella", position: "Midfielder", team: "Inter Milan" },
+    { name: "Diogo Jota", position: "Forward", team: "Liverpool" },
+    { name: "Thiago Silva", position: "Defender", team: "Chelsea" },
+    { name: "Éder Militão", position: "Defender", team: "Real Madrid" },
+    { name: "Wojciech Szczęsny", position: "Goalkeeper", team: "Juventus" },
+    { name: "Jorginho", position: "Midfielder", team: "Arsenal" },
+    { name: "Yann Sommer", position: "Goalkeeper", team: "Inter Milan" },
+    { name: "Franck Kessié", position: "Midfielder", team: "Al-Ahli" },
+    { name: "Lisandro Martínez", position: "Defender", team: "Manchester United" },
+    { name: "Fabinho", position: "Midfielder", team: "Al-Ittihad" },
+    { name: "Ivan Perišić", position: "Midfielder", team: "Tottenham Hotspur" },
+    { name: "James Maddison", position: "Midfielder", team: "Tottenham Hotspur" },
+    { name: "Dani Carvajal", position: "Defender", team: "Real Madrid" },
+    { name: "Lucas Paquetá", position: "Midfielder", team: "West Ham United" },
+    { name: "Martin Ødegaard", position: "Midfielder", team: "Arsenal" }
+];
+
+
+        const playersList = document.getElementById('players-list');
+        const searchInput = document.getElementById('player-name');
+        const searchButton = document.getElementById('search-button');
+
+        function displayPlayers(playersToShow) {
+            playersList.innerHTML = '';
+            if (playersToShow.length === 0) {
+                playersList.innerHTML = '<p>No players found. Please try a different search.</p>';
+                return;
+            }
+            playersToShow.forEach(player => {
+                const playerItem = document.createElement('div');
+                playerItem.className = 'player-item';
+                playerItem.innerHTML = `
+                    <h3>${player.name}</h3>
+                    <p>Position: ${player.position}</p>
+                    <p>Team: ${player.team}</p>
+                `;
+                playersList.appendChild(playerItem);
+            });
+        }
+
+        function searchPlayers() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredPlayers = players.filter(player => 
+                player.name.toLowerCase().includes(searchTerm) ||
+                player.position.toLowerCase().includes(searchTerm) ||
+                player.team.toLowerCase().includes(searchTerm)
+            );
+            displayPlayers(filteredPlayers);
+        }
+
+        searchButton.addEventListener('click', searchPlayers);
+        searchInput.addEventListener('keyup', (event) => {
+            if (event.key === 'Enter') {
+                searchPlayers();
+            }
+        });
+
+        // Initial display of all players
+        displayPlayers(players);
+
+        // Football animation
+        const football = document.querySelector('.football');
+        let position = 0;
+        let direction = 1;
+
+        function animateFootball() {
+            position += direction;
+            if (position > 100 || position < 0) {
+                direction *= -1;
+            }
+            football.style.left = `${position}%`;
+            requestAnimationFrame(animateFootball);
+        }
+
+        animateFootball();
+    </script>
+</body>
+</html>
